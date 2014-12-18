@@ -1,5 +1,5 @@
 def source_paths
-  [File.join(File.expand_path(File.dirname(__FILE__)),'rails_root')] +
+  [File.expand_path(File.dirname(__FILE__))] +
     Array(super)
 end
 
@@ -8,7 +8,7 @@ gem('autoprefixer-rails', '~> 4.0.2.1')
 gem('simple_form', '~> 3.1.0')
 gem('country_select', '~> 2.1.0')
 gem('devise', '~> 3.4.1')
-gem('thin', '~> 1.6.3')
+gem('puma', '~> 2.10.2')
 
 inside(app_name) do
   run("bundle install")
