@@ -8,8 +8,7 @@ gem('autoprefixer-rails', '~> 4.0.2.1')
 gem('simple_form', '~> 3.1.0')
 gem('country_select', '~> 2.1.0')
 gem('devise', '~> 3.4.1')
-
-trying = true
+gem('thin', '~> 1.6.3')
 
 inside(app_name) do
   run("bundle install")
@@ -17,12 +16,13 @@ inside(app_name) do
   run("rails generate devise:install")
   run("rails g devise:views")
   run("rails generate devise User")
-end unless trying
+end
 
-#generate(:scaffold, "person name:string")
-#route "root to: 'people#index'"
-#rake("db:create")
-#rake("db:migrate")
+generate(:controller, "static_page home")
+route "root to: 'static_page#home'"
+rake("db:drop")
+rake("db:create")
+rake("db:migrate")
 
 insert_into_file("config/environments/development.rb", %Q|  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }\n|, after: "config/application.rb.\n")
 
